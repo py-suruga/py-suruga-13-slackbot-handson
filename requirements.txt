@@ -1,0 +1,4 @@
+Flask
+slackeventsapi
+gunicorn
+requests
