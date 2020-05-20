@@ -1,6 +1,9 @@
 # py-suruga-13-slackbot-handson
 
-Python駿河 #13のSlackbotハンズオンの資料です
+こちらはPython駿河 & Unagi.py合同勉強会 Slackbotハンズオンの資料です。
+
+[Python駿河 勉強会 #13 〜オンラインSlack botハンズオン再び〜 - connpass](https://py-suruga.connpass.com/event/175942/?utm_campaign=recent_events&utm_source=feed&utm_medium=atom)
+[Unagi.py 勉強会29枚目～オンラインSlack botハンズオン再び～ - connpass](https://unagi-py.connpass.com/event/175956/)
 
 ## 概要
 
