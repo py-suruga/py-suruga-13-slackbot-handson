@@ -10,7 +10,7 @@ Python駿河 #13のSlackbotハンズオンの資料です
 - SlackアプリをSlackに設定する方法
 - GitHub Actionsの基本的な扱い
 - Herokuへのデプロイ
-- SlackbotからWeb APIを操作して
+- SlackbotからWeb APIを操作して結果をbotが答える
 
 時間内に終わらなくても、ドキュメントの内容を進めることで完走できます。
 
