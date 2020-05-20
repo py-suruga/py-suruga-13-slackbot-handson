@@ -37,7 +37,7 @@ Pythonの実行環境は3.7以降を対象にしています。
 - エディター,IDE:基本的にお好きな物で
   - Visual Studio Code: 講師が利用します
   - PyCharm
-  - Visual Studio:
+  - Visual Studio: Python拡張をおすすめします -> [Visual Studio を使用した Python 開発 - Visual Studio | Microsoft Docs](https://docs.microsoft.com/ja-jp/visualstudio/python/?view=vs-2019&fbclid=IwAR0U_6oJEYM8mJB-LcE7XAP6DNobZzlXpvPLNXoev2XiwJQi9gwy0JL0X_w)
   - etc...
 - ターミナル
   - Win:コマンドプロンプト（cmd.exe）
