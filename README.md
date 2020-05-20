@@ -4,7 +4,7 @@ Python駿河 #13のSlackbotハンズオンの資料です
 
 ## 概要
 
-今回のハンズオンは以下を扱います。（結構いろいろとあります）
+今回のハンズオンは以下を扱います。
 
 - SlackbotをSlackのEventAPI, WebAPIで作成する
 - SlackbotでWEB APIで得られる結果を取得して返します
@@ -12,15 +12,13 @@ Python駿河 #13のSlackbotハンズオンの資料です
 - Herokuへのデプロイ
 - GitHub Actionsの基本的な扱い
 
-時間内に終わらなくても、ドキュメントの内容を進めることで完走できるようになっています。
+時間内に終わらなくても、ドキュメントの内容を進めることで完走できます。
 
-このハンズオン中にPythonの具体的なコードの解説はあまりしません。（個別に懇親会などでお聞きください）
+このハンズオン中にPythonの具体的なコードの解説はしない予定です。（ハンズオン後の懇親会やTwitterなどでお聞きください）
 
 Pythonの実行環境は3.7以降を対象にしています。
 
-## ハンズオンにレベルについて
-
-### あるとよいツールの知識
+## あるとよいツールの知識
 
 - Gitの基礎知識:add, commit, push/pull, remote などの
 - GitHubの基礎知識: 主にClone, GitHubのリポジトリへのpush/pull
@@ -28,21 +26,26 @@ Pythonの実行環境は3.7以降を対象にしています。
 
 ## ハンズオンに必要な環境
 
+### 対象OS
+
+- Windows 10
+- （Mac, Linuxは動作しますが、詳しくサポートはしません）
+
 ### PCにインストールするもの
 
-- OS:
-  - Windows 10
-  - （Mac, Linuxは動作しますが、詳しくサポートはしません）
 - Python 3.7: 公式版をおすすめします。
 - エディター,IDE:基本的にお好きな物で
-  - Visual Studio Code:ハンズオン講師が利用します
+  - Visual Studio Code:講師が利用します
   - PyCharm
-  - Visual Studio
+  - Visual Studio:
+  - etc...
 - ターミナル
   - Win:コマンドプロンプト（cmd.exe）
   - （Mac, Linuxはお好きなターミナルアプリで）
-- Git
+  - エディター, IDE内蔵のターミナルでも作業できます
+- Git: なるべく最新
 - Heroku Cli
+  - [The Heroku CLI | Heroku Dev Center](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
 
 ### 
@@ -54,8 +57,13 @@ Pythonの実行環境は3.7以降を対象にしています。
 利用する各サービスの登録, ログインをします
 
 - Github
+  - 登録 : https://github.com/join
+  - ログイン : https://github.com/login
 - Heroku
+  - 登録 : https://signup.heroku.com/jp
+  - ログイン : https://id.heroku.com/login
 - Slack
+  - 新規ワークスペース作成 : https://slack.com/get-started#/create
 
 Slackbotを作る際には、開発用のSlackワークスペースを各自で用意することをおすすめします。（Slack側でもアナウンスされています）
 
