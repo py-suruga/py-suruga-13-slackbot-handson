@@ -7,10 +7,10 @@ Python駿河 #13のSlackbotハンズオンの資料です
 今回のハンズオンは以下を扱います。
 
 - SlackbotをSlackのEventAPI, WebAPIで作成する
-- SlackbotでWEB APIで得られる結果を取得して返します
 - SlackアプリをSlackに設定する方法
-- Herokuへのデプロイ
 - GitHub Actionsの基本的な扱い
+- Herokuへのデプロイ
+- SlackbotからWeb APIを操作して
 
 時間内に終わらなくても、ドキュメントの内容を進めることで完走できます。
 
@@ -20,9 +20,9 @@ Pythonの実行環境は3.7以降を対象にしています。
 
 ## あるとよいツールの知識
 
-- Gitの基礎知識:add, commit, push/pull, remote などの
+- Gitの基礎知識: add, commit, push/pull, remoteなどの操作コマンド
 - GitHubの基礎知識: 主にClone, GitHubのリポジトリへのpush/pull
-- Web API/jsonの扱い, HTTPS経由のAPI操作
+- Web API/jsonの扱い、HTTPS経由のAPI操作
 
 ## ハンズオンに必要な環境
 
@@ -35,7 +35,7 @@ Pythonの実行環境は3.7以降を対象にしています。
 
 - Python 3.7: 公式版をおすすめします。
 - エディター,IDE:基本的にお好きな物で
-  - Visual Studio Code:講師が利用します
+  - Visual Studio Code: 講師が利用します
   - PyCharm
   - Visual Studio:
   - etc...
@@ -47,27 +47,24 @@ Pythonの実行環境は3.7以降を対象にしています。
 - Heroku Cli
   - [The Heroku CLI | Heroku Dev Center](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
-
-### 
-
 ## ハンズオン手順
 
 ### あらかじめ準備したほうが良いもの
 
 利用する各サービスの登録, ログインをします
 
-- Github
-  - 登録 : https://github.com/join
-  - ログイン : https://github.com/login
+- GitHub
+  - [登録](https://github.com/join)
+  - [ログイン](https://github.com/login)
 - Heroku
-  - 登録 : https://signup.heroku.com/jp
-  - ログイン : https://id.heroku.com/login
+  - [登録](https://signup.heroku.com/jp)
+  - [ログイン](https://id.heroku.com/login)
 - Slack
-  - 新規ワークスペース作成 : https://slack.com/get-started#/create
+  - [新規ワークスペース作成](https://slack.com/get-started#/create)
 
 Slackbotを作る際には、開発用のSlackワークスペースを各自で用意することをおすすめします。（Slack側でもアナウンスされています）
 
-サービスの登録については各サービスの案内に従ってください。
+サービスの登録については各サービスの案内にしたがってください。
 
 ### 作業ディレクトリ
 
@@ -77,54 +74,52 @@ Slackbotを作る際には、開発用のSlackワークスペースを各自で�
 cd ~\Documents
 ```
 
-### ハンズオンのリポジトリをClone
+### ハンズオンのリポジトリをフォークしてClone
 
-このハンズオンのGitHubリポジトリからローカル環境にCloneします。
+このハンズオンのGitHubリポジトリを、参加者のGitHubのアカウントへフォークします。そのフォークしたリポジトリをローカル環境にCloneします。
+
+GitHubのフォーク方法はヘルプを確認します。
+
+[リポジトリをフォークする - GitHub ヘルプ](https://help.github.com/ja/github/getting-started-with-github/fork-a-repo)
 
 コマンドでの操作はこちらです。
 
+```cmd
+// git clone https://github.com/[各参加者のgithubアカウント名]/py-suruga-13-slackbot-handson.git
 ```
 
-git clone ***
-git checkout 
-```
-
-VSCodeでの操作は
-
+エディター、IDEからのgit cloneはそれぞれのアプリの利用方法を参照してください。
 
 ### ローカル開発環境の用意
 
-Pythonはシステムにインストールされた実行環境以外に仮想環境を用意することができます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。
+Pythonはシステムにインストールされた実行環境以外の仮想環境を用意できます。仮想環境を作ることでシステム側の環境を汚すこと無く開発環境の構築ができます。
 
 仮想環境は以下のコマンドで作成します
 
 ```cmd
-cd []
-# cd 
+cd py-suruga-13-slackbot-handson
 python -m venv .venv
 ```
 
 仮想環境を利用するときには、以下のコマンドを実行します
 
-```
+```cmd
 ./venv/Scripts/activate.bat
-(.venv) 
+(.venv) >
 ```
 
+また、Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
 
-このハンズオンで利用するライブラリは以下になります。
+---
 
-- slackeventsapi
-- slackclient
-- requests
-- Flask
+Work in progress...
 
-また、Pipenvでの環境作成もできます。（此方については今回は扱いません。普段利用されている方はPipfileも同梱しているのでご利用ください）
+## システムの全体図
 
-- 全体図
-- 環境構築
-- Slackの必要な設定
-- gitでコードを落とす
-- herokuのサインアップ
-- github actionsのデプロイ手段
-- コードの概要
+## Slackアプリの作成と設定
+
+## GitHub Actionsのデプロイ手段
+
+## ハンズオンのSlackbotの概要
+
+## Slackbotの改造をしてみる
