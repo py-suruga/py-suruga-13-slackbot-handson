@@ -1,6 +1,6 @@
 # py-suruga-13-slackbot-handson
 
-こちらはPython駿河 & Unagi.py合同勉強会 Slackbotハンズオンの資料です。
+こちらはPython駿河 & Unagi.py合同勉強会で行われるSlackbotハンズオンの資料です。
 
 [Python駿河 勉強会 #13 〜オンラインSlack botハンズオン再び〜 - connpass](https://py-suruga.connpass.com/event/175942/)
 
@@ -10,7 +10,6 @@
 
 今回のハンズオンは以下を扱います。
 
-- SlackbotをSlackのEventAPI, WebAPIで作成する
 - SlackアプリをSlackに設定する方法
 - GitHub Actionsの基本的な扱い
 - Herokuへのデプロイ
@@ -123,70 +122,79 @@ rem 仮想環境上に必要なパッケージをインストールします
 
 Work in progress...
 
+---
+
 ### Slackアプリの作成と設定
 
 まず初めにBotとなるSlackアプリをSlack上で作成します。
 
-「Create a Slack App」からApp Nameにアプリ名を入力します。（このアプリ名はherokuのアプリ名でも利用します。
+「Create a Slack App」からApp Nameにアプリ名を入力します。（このアプリ名はHerokuのアプリ名でも利用します。
 
-img
+![slackapp1.jpg](./doc-img/slackapp1.jpg)
 
 Slack WorkSpaceはハンズオン用に新たに取得したワークスペースを利用してください。
 
 アプリが作成できたら、「OAuth & Permissions」の「Scopes」>「Bot Token Scopes」にスコープの設定を行います。
 
-img
+![slackapp2.jpg](./doc-img/slackapp2.jpg)
 
 「Bot Token Scope」はBotとなるSlackアプリがSlackワークスペースに利用できる権限の範囲（スコープ）です。
 
 この時点では、`chat:write`=botがSlackへメッセージを送るためのスコープのみを設定していますが、後ほどの設定で、いくつか追加されます。
 
-img
+![slackapp3.jpg](./doc-img/slackapp3.jpg)
 
 追加したら、ページの上にある「Install App to Workspace」をクリックし、SlackアプリをSlackワークスペースへ追加します。
 
-img
-
-img
+![slackapp4.jpg](./doc-img/slackapp4.jpg)
+![slackapp5.jpg](./doc-img/slackapp5.jpg)
 
 追加が終わると、「Bot User OAuth Access Token」が表示されます。このトークンをまず控えてください。
 
-img
+![slackapp6.jpg](./doc-img/slackapp6.jpg)
 
 次に、右上の「Basic Information」へ戻り、「App Credentials」の中にある「Signing Secret」を控えます。
 
-### herokuのアプリを作成する
+![slackapp7.jpg](./doc-img/slackapp7.jpg)
+
+### Herokuのアプリを作成する
 
 Herokuのアプリを作成して必要な設定を行います。
 
-まずherokuのdashboardへあくせすして　、New>Create New appを選択します。
+まずHerokuのdashboardへアクセスして「New」>「Create New app」を選択します。
 
-img
+![heroku1.jpg](./doc-img/heroku1.jpg)
 
-App nameへSlackアプリのアプリ名を入れます。このアプリ名はherokuアプリの外部アドレスに利用されるので、heroku内でアプリ名が被る場合に利用できないと出ます。
+App nameへSlackアプリのアプリ名を入れます。このアプリ名はHerokuアプリの外部アドレスに利用されるので、Heroku内でアプリ名が被る場合に利用できないと出ます。
 
 （今回のハンズオンではあらかじめ被らないようなアプリ名を生成してされているはずです）
 
-そのままCreate Appを
+そのまま「Create App」を押してHerokuのアプリを作成します。
 
-img
+![heroku2.jpg](./doc-img/heroku2.jpg)
 
-作成されると、herokuアプリ名のメニューに入ります。
+作成されると、Herokuアプリ名のメニューに入ります。
 
-### herokuの環境変数にSlackbotで利用するシークレットを記載する
+![heroku3.jpg](./doc-img/heroku3.jpg)
 
-Slackbotが実際に動作する環境がHerokuになります。そのため、herokuの実行環境にSlackbotがSlackと通信する際に利用するapiのトークンやシークレットを覚えさせる必要があります。
+### Herokuの環境変数にSlackbotで利用するシークレットを登録
 
-herokuのアプリメニューにある「Settings」の「Config Vars」へ以下の2つを登録します。
+Slackbotが実際に動作する環境がHerokuになります。そのため、Herokuの実行環境にSlackbotがSlackと通信する際に利用するapiのトークンやシークレットを覚えさせる必要があります。
+
+Herokuのアプリメニューにある「Settings」の「Config Vars」へ以下の2つを登録します。
 
 |KEY|VALUE|
 |---|---|
-|SLACK_BOT_TOKEN|***|
-|SLACK_SIGNING_SECRET|***|
+|SLACK_BOT_TOKEN|Slackアプリ設定で控えた「Bot User OAuth Access Token」|
+|SLACK_SIGNING_SECRET|Slackアプリ設定で控えた「Signing Secret」|
 
-img
+![heroku4.jpg](./doc-img/heroku4.jpg)
 
-### herokuの認証情報を取得する
+### Herokuの認証情報を取得する
+
+Heroku Cli（herokuコマンド）で連携時に必要な認証情報を取得します。
+
+ローカル開発環境でherokuのログインを行います。
 
 ```cmd
 heroku login
@@ -200,7 +208,7 @@ Logged in as hrs.sano645@gmail.com
 
 ```
 
-herokuのAPI Keyを表示して控えてください。
+ログイン後、HerokuのAPI Keyを表示して控えてください。
 
 ```cmd
 heroku auth:token
@@ -210,6 +218,8 @@ heroku auth:token
 [api keyが表示されます]
 ```
 
+注意:このAPI Keyは外部に漏らさないように注意してください。Herokuへの全権限を持った認証キーとなります。
+
 ### GitHub ActionsでHerokuへデプロイ
 
 GitHub ActionsはCI/CDと呼ばれている、継続的なアプリのデプロイを行うサービスです。
@@ -218,28 +228,27 @@ GitHub ActionsはCI/CDと呼ばれている、継続的なアプリのデプロ�
 
 GitHubのリポジトリでは基本的に利用できます。定義ファイルとなる `.github/workflows/*.yml`を用意することで、GitHubのリポジトリにPush, PRなどを行うことで自動的にデプロイをします。`*.yml`ファイルはワークフローと呼ばれています。
 
-今回は、Githubへ変更のpushを行ったときに自動的にherokuへデプロイを行う設定を用意しています。
+今回は、GitHubへ変更のpushを行ったときに自動的にHerokuへデプロイを行う設定を用意しています。
 
-[herokuへのデプロイを行う workflow.yml](.github/workflows/workflow.yml)
+[Herokuへのデプロイを行う workflow.yml](.github/workflows/workflow.yml)
 
-このワークフローは変数を設定しています。herokuのAPI Key、herokuのアプリ名、herokuでログインするときのメールアドレスの3つを設定します。
+このワークフローは変数を設定しています。HerokuのAPI Key、Herokuのアプリ名、Herokuでログインするときのメールアドレスの3つを設定します。
 
-フォークしたハンズオンのプロジェクトページから 「Settings」ページへ進み、「Secrets」のページへ進みます。
+フォークしたハンズオンのプロジェクトページから「Settings」ページへ進み、「Secrets」のページへ進みます。
 
-img
+![github_actions1.jpg](./doc-img/github_actions1.jpg)
 
 「New secret」ボタンから変数を追加します。
 
 |変数名|値|
 |---|---|
 |HEROKU_API_KEY|[`heroku auth:token` で取得したトークン]|
-|HEROKU_APP_NAME|[herokuのアプリ名]|
-|HEROKU_EMAIL|[herokuのログインで利用するメールアドレス]|
+|HEROKU_APP_NAME|[Herokuのアプリ名]|
+|HEROKU_EMAIL|[Herokuのログインで利用するメールアドレス]|
 
-img
+![github_actions2.jpg](./doc-img/github_actions2.jpg)
 
-Actionsを動作させます。今回のワークフローでは、githubへ変更をpushしたタイミングで自動的にワークフローが動作します。なので何かしらのファイルを追加してcommitします。
-
+Actionsを動作させます。今回のワークフローでは、GitHubへ変更をpushしたタイミングで自動的にワークフローが動作します。なので何かしらのファイルを追加してcommitします。
 
 ローカル開発環境でファイルを追加します。
 
@@ -254,16 +263,21 @@ rem pushする
 git push origin master
 ```
 
-pushが終わると
+pushが終わるとGitHub ActionsとHeroku側でそれぞれデプロイ作業が始まります。
 
+![github_actions3.jpg](./doc-img/github_actions3.jpg)
+![github_actions4.jpg](./doc-img/github_actions4.jpg)
+
+終了したときのGitHubとHerokuの結果はこのように表示されます。
+
+![github_actions5.jpg](./doc-img/github_actions5.jpg)
+![github_actions6.jpg](./doc-img/github_actions6.jpg)
+
+![heroku5.jpg](./doc-img/heroku5.jpg)
 
 ### Slackbotが利用できるイベントを登録する
 
-SlackアプリはEvent APIを使って、Slackワークスペース内のイベント
-
----
-
-Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー(ここではheroku)へ伝えることができます。
+Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー(ここではHeroku)へ伝えることができます。
 
 ここで2つの設定を行います。
 
@@ -274,14 +288,11 @@ Slack Event APIを使い、Slackワークスペース上に起きたイベント
 
 「Event Subscriptions」ページの「Enable Events」にある、右上のボタンをOnにします。
 
-img
+次に「Request URL」にエンドポイントURLを設定します。Herokuのアプリ上でbotアプリが待機しているアドレスを入力します。
 
-次に「Request URL」にエンドポイントURLを設定します。herokuのアプリ上でbotアプリが待機しているアドレスを入力します。
+![slackapp8.jpg](./doc-img/slackapp8.jpg)
 
-img
-
-> https://[herokuのアプリ名].herokuapp.com/slack/events
-
+> https://[Herokuのアプリ名].herokuapp.com/slack/events
 
 2つ目の、イベントの種類を登録します。
 
@@ -291,17 +302,16 @@ Slackアプリのスコープを扱ったときに、イベントによるスコ
 
 「Event Subscriptions」の「Subscribe to bot events」内に`message.channels`イベントを登録します。
 
-img
-
-img
+![slackapp9.jpg](./doc-img/slackapp9.jpg)
 
 登録後はSlackワークスペースへアプリの再インストールを指示されるので行います。
 
-img
+![slackapp10.jpg](./doc-img/slackapp10.jpg)
 
 再インストール時の画面を見ると、権限が追加されていることがわかります。先ほどはチャンネルにメッセージを送信するだけでしたが、それに加えてチャンネル内のメッセージを見ることができます。
 
-img
+![slackapp11.jpg](./doc-img/slackapp11.jpg)
+![slackapp12.jpg](./doc-img/slackapp12.jpg)
 
 デプロイとSlackアプリの権限の設定が終わると、Slackbotが利用できます。最後にSlackワークスペース上でbotを呼び出してみます。
 
@@ -311,18 +321,12 @@ img
 |---|---|
 |hi|英語風の挨拶を返します|
 |こんにちは|日本語の挨拶を返します|
-|shizuokatenki [西部,中部,東部,伊豆]| 静岡の4地域の天気を教えてくれます|
+|shizuokatenki [西部/中部/東部/伊豆]| 静岡の4地域の天気を教えてくれます|
 
-img
-
----
-
-Work in progress...
 
 ## ハンズオンのSlackbot概要
 
 ## Slackbotの改造をしてみる
-
 
 ## 参考資料
 
@@ -333,9 +337,6 @@ Work in progress...
 - [API Events | Slack](https://api.slack.com/events)
 - [Deploy to Heroku · Actions · GitHub Marketplace](https://github.com/marketplace/actions/deploy-to-heroku)
 
-
 ## おまけ
 
-### ローカル開発環境からherokuへデプロイする
-
-###
+### ローカル開発環境からHerokuへデプロイする
