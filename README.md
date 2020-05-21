@@ -108,7 +108,7 @@ python -m venv .venv
 仮想環境を利用するときには、以下のコマンドを実行します
 
 ```cmd
-./venv/Scripts/activate.bat
+.\.venv\Scripts\activate.bat
 (.venv) >
 ```
 
