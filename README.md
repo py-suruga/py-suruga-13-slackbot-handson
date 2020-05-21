@@ -123,7 +123,7 @@ rem 仮想環境上に必要なパッケージをインストールします
 
 Work in progress...
 
-## Slackアプリの作成と設定
+### Slackアプリの作成と設定
 
 まず初めにBotとなるSlackアプリをSlack上で作成します。
 
@@ -155,7 +155,7 @@ img
 
 次に、右上の「Basic Information」へ戻り、「App Credentials」の中にある「Signing Secret」を控えます。
 
-## herokuのアプリを作成する
+### herokuのアプリを作成する
 
 Herokuのアプリを作成して必要な設定を行います。
 
@@ -186,13 +186,7 @@ herokuのアプリメニューにある「Settings」の「Config Vars」へ以�
 
 img
 
----
-
-wip
-
----
-
-## herokuのログインをローカルで行う
+### herokuの認証情報を取得する
 
 ```cmd
 heroku login
@@ -216,10 +210,66 @@ heroku auth:token
 [api keyが表示されます]
 ```
 
-## GitHub ActionsでHerokuへデプロイ
+### GitHub ActionsでHerokuへデプロイ
 
-herokuのAPI Key、herokuのアプリ名、herokuでログインするときのメールアドレスを利用します。
+GitHub ActionsはCI/CDと呼ばれている、継続的なアプリのデプロイを行うサービスです。
 
-## ハンズオンのSlackbotの概要
+[Actions | GitHub](https://github.co.jp/features/actions)
 
-## Slackbotの改造をしてみる
+GitHubのリポジトリでは基本的に利用できます。定義ファイルとなる `.github/workflows/*.yml`を用意することで、GitHubのリポジトリにPush, PRなどを行うことで自動的にデプロイをします。`*.yml`ファイルはワークフローと呼ばれています。
+
+今回は、Githubへ変更のpushを行ったときに自動的にherokuへデプロイを行う設定を用意しています。
+
+[herokuへのデプロイを行う workflow.yml](.github/workflows/workflow.yml)
+
+このワークフローは変数を設定しています。herokuのAPI Key、herokuのアプリ名、herokuでログインするときのメールアドレスの3つを設定します。
+
+フォークしたハンズオンのプロジェクトページから 「Settings」ページへ進み、「Secrets」のページへ進みます。
+
+img
+
+「New secret」ボタンから変数を追加します。
+
+|変数名|値|
+|---|---|
+|HEROKU_API_KEY|[`heroku auth:token` で取得したトークン]|
+|HEROKU_APP_NAME|[herokuのアプリ名]|
+|HEROKU_EMAIL|[herokuのログインで利用するメールアドレス]|
+
+img
+
+Actionsを動作させます。今回のワークフローでは、githubへ変更をpushしたタイミングで自動的にワークフローが動作します。なので何かしらのファイルを追加してcommitします。
+
+
+ローカル開発環境でファイルを追加します。
+
+```cmd
+rem 新しいファイルを追加する。適当な名前のテキストファイルでも、REDAME.mdに変更を入れるで問題ないです。
+
+rem add, commitする
+git add .
+git commit -m "add new file"
+
+rem pushする
+git push origin master
+```
+
+pushが終わると
+
+### ハンズオンのSlackbotの概要
+
+### Slackbotの改造をしてみる
+
+
+## 参考資料
+
+- slackeventapiのサンプル
+- heroku+pythonの日本語解説のqiita
+- github action heroku deployのアクション
+
+
+## おまけ
+
+### ローカル開発環境からherokuへデプロイする
+
+###
