@@ -51,7 +51,6 @@ Pythonの実行環境は3.7以降を対象にしています。
 - Heroku Cli
   - [The Heroku CLI | Heroku Dev Center](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
-
 ## システムの全体図
 
 全体図が乗ります（イメージ全体図を作成中）
@@ -60,7 +59,7 @@ Pythonの実行環境は3.7以降を対象にしています。
 
 ### あらかじめ準備したほうが良いもの
 
-利用する各サービスの登録, ログインをします
+利用する各サービスの登録、 ログインをします
 
 - GitHub
   - [登録](https://github.com/join)
@@ -124,18 +123,17 @@ rem 仮想環境上に必要なパッケージをインストールします
 
 Work in progress...
 
-
 ## Slackアプリの作成と設定
 
 まず初めにBotとなるSlackアプリをSlack上で作成します。
 
-Create a Slack App よりApp Nameにアプリ名を入力します。（このアプリ名はherokuのアプリ名でも利用します。
+「Create a Slack App」からApp Nameにアプリ名を入力します。（このアプリ名はherokuのアプリ名でも利用します。
 
 img
 
 Slack WorkSpaceはハンズオン用に新たに取得したワークスペースを利用してください。
 
-アプリが作成出来たら、「OAuth & Permissions」の「Scopes」>「Bot Token Scopes」にスコープの設定を行います。
+アプリが作成できたら、「OAuth & Permissions」の「Scopes」>「Bot Token Scopes」にスコープの設定を行います。
 
 img
 
@@ -177,9 +175,9 @@ img
 
 ### herokuの環境変数にSlackbotで利用するシークレットを記載する
 
-Slackbotが実際に動作する環境がHerokuになります。そのため、herokuの実行環境にSlackbotがSlackと通信する際に利用するapiのトークン,シークレットを覚えさせる必要があります。
+Slackbotが実際に動作する環境がHerokuになります。そのため、herokuの実行環境にSlackbotがSlackと通信する際に利用するapiのトークンやシークレットを覚えさせる必要があります。
 
-herokuのアプリメニューにある「Settings」の「Config Vars」へ以下の二つを登録します。
+herokuのアプリメニューにある「Settings」の「Config Vars」へ以下の2つを登録します。
 
 |KEY|VALUE|
 |---|---|
@@ -193,8 +191,6 @@ img
 wip
 
 ---
-
-
 
 ## herokuのログインをローカルで行う
 
@@ -222,12 +218,8 @@ heroku auth:token
 
 ## GitHub ActionsでHerokuへデプロイ
 
-herokuのAPI Key, herokuのアプリ名, herokuでログインするときのメールアドレスを利用します。
-
-
+herokuのAPI Key、herokuのアプリ名、herokuでログインするときのメールアドレスを利用します。
 
 ## ハンズオンのSlackbotの概要
-
-
 
 ## Slackbotの改造をしてみる
