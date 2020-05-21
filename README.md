@@ -259,15 +259,37 @@ pushが終わると
 
 ### Slackbotが利用できるイベントを登録する
 
-SlackアプリはEvent APIを使って、Slackワークスペース内のイベントを取得することができます。
+SlackアプリはEvent APIを使って、Slackワークスペース内のイベント
 
-まずSlackワークスペースは、herokuにあるbotへのアクセス先を
+---
+
+Slack Event APIを使い、Slackワークスペース上に起きたイベントを、Slackbotが動作するサーバー(ここではheroku)へ伝えることができます。
+
+ここで2つの設定を行います。
+
+1. Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURL
+2. イベントの種類
+
+まず1つめの、Slack Event APIが起きたイベントをサーバーに伝えるためのエンドポイントURLを設定します。
+
+「Event Subscriptions」ページの「Enable Events」にある、右上のボタンをOnにします。
+
+img
+
+次に「Request URL」にエンドポイントURLを設定します。herokuのアプリ上でbotアプリが待機しているアドレスを入力します。
+
+img
+
+> https://[herokuのアプリ名].herokuapp.com/slack/events
+
+
+2つ目の、イベントの種類を登録します。
 
 イベントには種類があり、あらかじめアプリで取得したいイベントの種類を登録する必要があります。
 
 Slackアプリのスコープを扱ったときに、イベントによるスコープの決定もあると書きましたが、このイベントを登録することでスコープの変化もあります。
 
-「」の「」内に`message.channels`イベントを登録します。
+「Event Subscriptions」の「Subscribe to bot events」内に`message.channels`イベントを登録します。
 
 img
 
@@ -291,16 +313,25 @@ img
 |こんにちは|日本語の挨拶を返します|
 |shizuokatenki [西部,中部,東部,伊豆]| 静岡の4地域の天気を教えてくれます|
 
-## ハンズオンのSlackbotの概要
+img
+
+---
+
+Work in progress...
+
+## ハンズオンのSlackbot概要
 
 ## Slackbotの改造をしてみる
 
 
 ## 参考資料
 
-- slackeventapiのサンプル
-- heroku+pythonの日本語解説のqiita
-- github action heroku deployのアクション
+- [slackapi/python-slack-events-api: Slack Events API adapter for Python](https://github.com/slackapi/python-slack-events-api)
+- [slackapi/python-slackclient: Slack Developer Kit for Python](https://github.com/slackapi/python-slackclient)
+- [heroku/python-getting-started: Getting Started with Python on Heroku.](https://github.com/heroku/python-getting-started)
+- [【Python＋heroku】Python入れてない状態からherokuで何か表示するまで（前編） - Qiita](https://qiita.com/it_ks/items/afd1bdb792d41d0e1145#%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4)
+- [API Events | Slack](https://api.slack.com/events)
+- [Deploy to Heroku · Actions · GitHub Marketplace](https://github.com/marketplace/actions/deploy-to-heroku)
 
 
 ## おまけ
