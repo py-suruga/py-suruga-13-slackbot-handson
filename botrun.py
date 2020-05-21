@@ -36,8 +36,8 @@ def handle_message_greeting(event_data):
             print("hi receive")
             # 何かを返す
             channel = message["channel"]
-            message = "Hi!!! :robot_face:I'm pysurugabot! :mount_fuji: :shrimp::fish:"
-            slack_client.chat_postMessage(channel=channel, text=message)
+            res_message = "Hi!!! :robot_face:I'm pysurugabot! :mount_fuji: :shrimp::fish:"
+            slack_client.chat_postMessage(channel=channel, text=res_message)
 
 
 @slack_events_adapter.on("message")
@@ -53,8 +53,8 @@ def handle_message_greeting_jp(event_data):
         if re.match(message_pattern, message.get("text")):
             print("hi jp receive")
             channel = message["channel"]
-            message = "こんにちは！！:robot_face:私はpysurugabotです！賢くなれるように頑張ります！ :mount_fuji::shrimp::fish:"
-            slack_client.chat_postMessage(channel=channel, text=message)
+            res_message = "こんにちは！！:robot_face:私はpysurugabotです！賢くなれるように頑張ります！ :mount_fuji::shrimp::fish:"
+            slack_client.chat_postMessage(channel=channel, text=res_message)
 
 
 # TODO:2020-05-21: インタラクティブ 
@@ -110,13 +110,13 @@ def tenki(event_data):
             weather_temp = result["forecasts"][0]["temperature"]["max"]
             
             if weather_temp is None:
-                message = "静岡県{}の今日の天気は {} です！".format(city_name, weather_telop)
+                res_message = "静岡県{}の今日の天気は {} です！".format(city_name, weather_telop)
             else:
-                message = "静岡県{}の今日の天気は {} 気温は{}℃です！".format(city_name, weather_telop, weather_temp["celsius"])
+                res_message = "静岡県{}の今日の天気は {} 気温は{}℃です！".format(city_name, weather_telop, weather_temp["celsius"])
             # メッセージを返す
             channel = message["channel"]
             
-            slack_client.chat_postMessage(channel=channel, text=message)
+            slack_client.chat_postMessage(channel=channel, text=res_message)
 
 
 # エラー時のイベントのハンドリング
