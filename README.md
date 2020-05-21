@@ -51,6 +51,11 @@ Pythonの実行環境は3.7以降を対象にしています。
 - Heroku Cli
   - [The Heroku CLI | Heroku Dev Center](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
+
+## システムの全体図
+
+全体図が乗ります（イメージ全体図を作成中）
+
 ## ハンズオン手順
 
 ### あらかじめ準備したほうが良いもの
@@ -119,12 +124,110 @@ rem 仮想環境上に必要なパッケージをインストールします
 
 Work in progress...
 
-## システムの全体図
 
 ## Slackアプリの作成と設定
 
-## GitHub Actionsのデプロイ手段
+まず初めにBotとなるSlackアプリをSlack上で作成します。
+
+Create a Slack App よりApp Nameにアプリ名を入力します。（このアプリ名はherokuのアプリ名でも利用します。
+
+img
+
+Slack WorkSpaceはハンズオン用に新たに取得したワークスペースを利用してください。
+
+アプリが作成出来たら、「OAuth & Permissions」の「Scopes」>「Bot Token Scopes」にスコープの設定を行います。
+
+img
+
+「Bot Token Scope」はBotとなるSlackアプリがSlackワークスペースに利用できる権限の範囲（スコープ）です。
+
+この時点では、`chat:write`=botがSlackへメッセージを送るためのスコープのみを設定していますが、後ほどの設定で、いくつか追加されます。
+
+img
+
+追加したら、ページの上にある「Install App to Workspace」をクリックし、SlackアプリをSlackワークスペースへ追加します。
+
+img
+
+img
+
+追加が終わると、「Bot User OAuth Access Token」が表示されます。このトークンをまず控えてください。
+
+img
+
+次に、右上の「Basic Information」へ戻り、「App Credentials」の中にある「Signing Secret」を控えます。
+
+## herokuのアプリを作成する
+
+Herokuのアプリを作成して必要な設定を行います。
+
+まずherokuのdashboardへあくせすして　、New>Create New appを選択します。
+
+img
+
+App nameへSlackアプリのアプリ名を入れます。このアプリ名はherokuアプリの外部アドレスに利用されるので、heroku内でアプリ名が被る場合に利用できないと出ます。
+
+（今回のハンズオンではあらかじめ被らないようなアプリ名を生成してされているはずです）
+
+そのままCreate Appを
+
+img
+
+作成されると、herokuアプリ名のメニューに入ります。
+
+### herokuの環境変数にSlackbotで利用するシークレットを記載する
+
+Slackbotが実際に動作する環境がHerokuになります。そのため、herokuの実行環境にSlackbotがSlackと通信する際に利用するapiのトークン,シークレットを覚えさせる必要があります。
+
+herokuのアプリメニューにある「Settings」の「Config Vars」へ以下の二つを登録します。
+
+|KEY|VALUE|
+|---|---|
+|SLACK_BOT_TOKEN|***|
+|SLACK_SIGNING_SECRET|***|
+
+img
+
+---
+
+wip
+
+---
+
+
+
+## herokuのログインをローカルで行う
+
+```cmd
+heroku login
+
+rem ブラウザでログインするときにエンターを押してください
+
+heroku: Press any key to open up the browser to login or q to exit:
+Opening browser to https://cli-auth.heroku.com/auth/cli/browser/******[専用のトークン文字列が出ます]
+Logging in... done
+Logged in as hrs.sano645@gmail.com
+
+```
+
+herokuのAPI Keyを表示して控えてください。
+
+```cmd
+heroku auth:token
+
+ »   Warning: token will expire **/**/****
+ »   Use heroku authorizations:create to generate a long-term token
+[api keyが表示されます]
+```
+
+## GitHub ActionsでHerokuへデプロイ
+
+herokuのAPI Key, herokuのアプリ名, herokuでログインするときのメールアドレスを利用します。
+
+
 
 ## ハンズオンのSlackbotの概要
+
+
 
 ## Slackbotの改造をしてみる
