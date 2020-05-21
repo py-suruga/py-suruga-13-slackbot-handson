@@ -1,0 +1,19 @@
+name: Deploy Slackbot
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリをActionsの環境へclone, checkoutを行う
+      - uses: actions/checkout@v2
+      # herokuのデプロイを行うAction
+      - uses: akhileshns/heroku-deploy@v3.0.4
+        with: # GitHubのSettings>Secretsに以下の変数を追加する
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}} 
+          heroku_email: ${{secrets.HEROKU_EMAIL}} 
