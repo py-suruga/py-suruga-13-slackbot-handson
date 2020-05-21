@@ -103,7 +103,7 @@ def tenki(event_data):
             # http://weather.livedoor.com/forecast/webservice/json/v1?code=220010
 
             result = api_response.json()
-
+            print("result_obj:{}".format(result))
             # コマンド実行時の今日の天気予報を抽出
             weather_telop = result["forecasts"][0]["telop"]
             weather_temp = result["forecasts"][0]["temperature"]["max"]["celsius"]
