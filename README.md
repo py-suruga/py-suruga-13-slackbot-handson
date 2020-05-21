@@ -89,7 +89,7 @@ GitHubのフォーク方法はヘルプを確認します。
 コマンドでの操作はこちらです。
 
 ```cmd
-// git clone https://github.com/[各参加者のgithubアカウント名]/py-suruga-13-slackbot-handson.git
+git clone https://github.com/[各参加者のgithubアカウント名]/py-suruga-13-slackbot-handson.git
 ```
 
 エディター、IDEからのgit cloneはそれぞれのアプリの利用方法を参照してください。
@@ -109,7 +109,8 @@ python -m venv .venv
 
 ```cmd
 .\.venv\Scripts\activate.bat
-(.venv) >
+rem 仮想環境上に必要なパッケージをインストールします
+(.venv) > pip install -r requirements.txt
 ```
 
 また、Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
