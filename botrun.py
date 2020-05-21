@@ -57,6 +57,7 @@ def handle_message_greeting_jp(event_data):
             slack_client.chat_postMessage(channel=channel, text=message)
 
 
+# TODO:2020-05-21: インタラクティブ 
 @slack_events_adapter.on("message")
 def tenki(event_data):
     """
