@@ -36,7 +36,7 @@ def handle_message_greeting(event_data):
             print("hi receive")
             # 何かを返す
             channel = message["channel"]
-            message = "Hi!!! I'm pysurugabot! :mount_fuji: :shrimp:"
+            message = "Hi!!! :robot_face:I'm pysurugabot! :mount_fuji: :shrimp::fish:"
             slack_client.chat_postMessage(channel=channel, text=message)
 
 
@@ -53,7 +53,7 @@ def handle_message_greeting_jp(event_data):
         if re.match(message_pattern, message.get("text")):
             print("hi jp receive")
             channel = message["channel"]
-            message = "こんにちは！！私はpysurugabotです！賢くなれるように頑張ります！ :mount_fuji: :shrimp:"
+            message = "こんにちは！！:robot_face:私はpysurugabotです！賢くなれるように頑張ります！ :mount_fuji::shrimp::fish:"
             slack_client.chat_postMessage(channel=channel, text=message)
 
 
