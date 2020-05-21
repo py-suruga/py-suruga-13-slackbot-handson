@@ -32,7 +32,8 @@ def handle_message_greeting(event_data):
     # subtypeがない場合=普通のメッセージ, 自分自身の内容を取得してもスルーするようにしておく必要がある
     if message.get("subtype") is None and message.get("bot_id") is None:
         # メッセージを適当にTrueで当たるものを探して
-        if re.match(message_pattern, message.get("text")):
+        matchobj = re.match(message_pattern, message.get("text"))
+        if matchobj:
             print("hi receive")
             # 何かを返す
             channel = message["channel"]
@@ -50,7 +51,8 @@ def handle_message_greeting_jp(event_data):
 
     # subtypeがない場合=普通のメッセージ, 自分自身の内容を取得してもスルーするようにしておく必要がある
     if message.get("subtype") is None and message.get("bot_id") is None:
-        if re.match(message_pattern, message.get("text")):
+        matchobj = re.match(message_pattern, message.get("text"))
+        if matchobj:
             print("hi jp receive")
             channel = message["channel"]
             res_message = "こんにちは！！:robot_face:私はpysurugabotです！賢くなれるように頑張ります！ :mount_fuji::shrimp::fish:"
@@ -92,31 +94,33 @@ def tenki(event_data):
 
         # botのパターンとして認識する文字がある場合
         matchobj = re.match(message_pattern, message.get("text"))
-        city_name = matchobj.group(1)
-        if matchobj and city_name in city_code_map:
-            print("run tenki ")
+        if matchobj:
+            # 地域名が存在するか確認する
+            city_name = matchobj.group(1)
+            if city_name in city_code_map:
+                print("run tenki ")
 
-            # API経由で天気を調べる
-            city_code = city_code_map[matchobj.group(1)]
+                # API経由で天気を調べる
+                city_code = city_code_map[matchobj.group(1)]
 
-            payload = {"city": city_code}
-            api_response = requests.get(api_url, params=payload)
-            # http://weather.livedoor.com/forecast/webservice/json/v1?code=220010
+                payload = {"city": city_code}
+                api_response = requests.get(api_url, params=payload)
+                # http://weather.livedoor.com/forecast/webservice/json/v1?code=220010
 
-            result = api_response.json()
-            print("result_obj:{}".format(result))
-            # コマンド実行時の今日の天気予報を抽出
-            weather_telop = result["forecasts"][0]["telop"]
-            weather_temp = result["forecasts"][0]["temperature"]["max"]
-            
-            if weather_temp is None:
-                res_message = "静岡県{}の今日の天気は {} です！".format(city_name, weather_telop)
-            else:
-                res_message = "静岡県{}の今日の天気は {} 気温は{}℃です！".format(city_name, weather_telop, weather_temp["celsius"])
-            # メッセージを返す
-            channel = message["channel"]
-            
-            slack_client.chat_postMessage(channel=channel, text=res_message)
+                result = api_response.json()
+                print("result_obj:{}".format(result))
+                # コマンド実行時の今日の天気予報を抽出
+                weather_telop = result["forecasts"][0]["telop"]
+                weather_temp = result["forecasts"][0]["temperature"]["max"]
+                
+                if weather_temp is None:
+                    res_message = "静岡県{}の今日の天気は {} です！".format(city_name, weather_telop)
+                else:
+                    res_message = "静岡県{}の今日の天気は {} 気温は{}℃です！".format(city_name, weather_telop, weather_temp["celsius"])
+                # メッセージを返す
+                channel = message["channel"]
+                
+                slack_client.chat_postMessage(channel=channel, text=res_message)
 
 
 # エラー時のイベントのハンドリング
