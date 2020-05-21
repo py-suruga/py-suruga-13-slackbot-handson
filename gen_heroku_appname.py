@@ -5,7 +5,7 @@
 
 import random
 
-DEFAULT_PREFIX = "pysuruga13-slackbot"
+DEFAULT_PREFIX = "pysurugabot"
 
 
 def main():
