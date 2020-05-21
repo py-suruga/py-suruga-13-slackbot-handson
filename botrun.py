@@ -92,7 +92,8 @@ def tenki(event_data):
 
         # botのパターンとして認識する文字がある場合
         matchobj = re.match(message_pattern, message.get("text"))
-        if matchobj and matchobj.group(1) in city_code_map:
+        city_name = matchobj.group(1)
+        if matchobj and city_name in city_code_map:
             print("run tenki ")
 
             # API経由で天気を調べる
@@ -106,11 +107,15 @@ def tenki(event_data):
             print("result_obj:{}".format(result))
             # コマンド実行時の今日の天気予報を抽出
             weather_telop = result["forecasts"][0]["telop"]
-            weather_temp = result["forecasts"][0]["temperature"]["max"]["celsius"]
-
+            weather_temp = result["forecasts"][0]["temperature"]["max"]
+            
+            if weather_temp is None:
+                message = "静岡県{}の今日の天気は {} です！".format(city_name, weather_telop)
+            else:
+                message = "静岡県{}の今日の天気は {} 気温は{}℃です！".format(city_name, weather_telop, weather_temp["celsius"])
             # メッセージを返す
             channel = message["channel"]
-            message = "今日の天気は {} 気温は{}℃です！".format(weather_telop, weather_temp)
+            
             slack_client.chat_postMessage(channel=channel, text=message)
 
 
