@@ -9,8 +9,13 @@ DEFAULT_PREFIX = "pysurugabot"
 
 
 def main():
+
     random_number = random.randint(1, 999999)
-    print("生成したアプリ名は '{}-{:06}'".format(DEFAULT_PREFIX, random_number))
+    appname = "{}-{:06}".format(DEFAULT_PREFIX, random_number)
+    print("Generate Slack/Heroku App name:", appname)
+
+    with open("appname.txt", "w") as appname_file:
+        appname_file.write(appname)
 
 
 if __name__ == "__main__":

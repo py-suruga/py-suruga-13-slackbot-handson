@@ -124,6 +124,17 @@ Work in progress...
 
 ---
 
+### Slackアプリ, Herokuアプリで利用する名前を生成する
+
+今回のハンズオンでは、SlackアプリとHerokuアプリで利用する名前を同一にします。その名前の生成は、リポジトリ内にある `gen_appname.py` を実行して生成します。
+
+```cmd
+>python gen_appname.py
+Generate Slack/Heroku App name: 'pysurugabot-[ランダムな数字6桁]'
+```
+
+生成したアプリ名を控えてください。（`appname.txt`というファイルも生成されるようにしています）
+
 ### Slackアプリの作成と設定
 
 まず初めにBotとなるSlackアプリをSlack上で作成します。
