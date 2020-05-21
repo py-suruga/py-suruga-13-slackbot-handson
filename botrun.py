@@ -24,7 +24,7 @@ slack_client = WebClient(slack_bot_token)
 # Example responder to greetings
 @slack_events_adapter.on("message")
 def handle_message_greeting(event_data):
-    print("debug:handled message:run {}".format(sys._getframe().f_code.co_name))
+    print("debug:handled function: {}".format(sys._getframe().f_code.co_name))
     print("debug:eventdata:{}".format(event_data))
     message = event_data["event"]
 
@@ -44,7 +44,7 @@ def handle_message_greeting(event_data):
 
 @slack_events_adapter.on("message")
 def handle_message_greeting_jp(event_data):
-    print("debug:handled message:run {}".format(sys._getframe().f_code.co_name))
+    print("debug:handled function: {}".format(sys._getframe().f_code.co_name))
     print("debug:eventdata:{}".format(event_data))
     message = event_data["event"]
 
@@ -87,7 +87,7 @@ def tenki(event_data):
         "西部": "220040",
     }
     
-    print("debug:handled message:run {}".format(sys._getframe().f_code.co_name))
+    print("debug:handled function: {}".format(sys._getframe().f_code.co_name))
     print("debug:eventdata:{}".format(event_data))
     message = event_data["event"]
 
