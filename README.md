@@ -158,6 +158,7 @@ Slack WorkSpaceはハンズオン用に新たに取得したワークスペー�
 追加したら、ページの上にある「Install App to Workspace」をクリックし、SlackアプリをSlackワークスペースへ追加します。
 
 ![slackapp4.jpg](./doc-img/slackapp4.jpg)
+
 ![slackapp5.jpg](./doc-img/slackapp5.jpg)
 
 追加が終わると、「Bot User OAuth Access Token」が表示されます。このトークンをまず控えてください。
@@ -319,12 +320,20 @@ Slackアプリのスコープを扱ったときに、イベントによるスコ
 
 ![slackapp10.jpg](./doc-img/slackapp10.jpg)
 
-再インストール時の画面を見ると、権限が追加されていることがわかります。先ほどはチャンネルにメッセージを送信するだけでしたが、それに加えてチャンネル内のメッセージを見ることができます。
+再インストール時の認証画面を見ると、権限が追加されていることがわかります。先ほどはチャンネルにメッセージを送信するだけでしたが、それに加えてチャンネル内のメッセージを見ることができます。
 
 ![slackapp11.jpg](./doc-img/slackapp11.jpg)
 ![slackapp12.jpg](./doc-img/slackapp12.jpg)
 
 デプロイとSlackアプリの権限の設定が終わると、Slackbotが利用できます。最後にSlackワークスペース上でbotを呼び出してみます。
+
+最初に、チャンネルにbotユーザーを追加します。
+
+![slackbot1.jpg](./doc-img/slackbot1.jpg)
+
+次に、botが反応するワードをポストします。ポストして数秒で返答されるようになっています。
+
+![slackbot3.jpg](./doc-img/slackbot3.jpg)
 
 #### 実装されているbotの種類
 
@@ -334,10 +343,13 @@ Slackアプリのスコープを扱ったときに、イベントによるスコ
 |こんにちは|日本語の挨拶を返します|
 |shizuokatenki [西部/中部/東部/伊豆]| 静岡の4地域の天気を教えてくれます|
 
-
 ## ハンズオンのSlackbot概要
 
+WIP...
+
 ## Slackbotの改造をしてみる
+
+WIP...
 
 ## 参考資料
 
@@ -347,7 +359,10 @@ Slackアプリのスコープを扱ったときに、イベントによるスコ
 - [【Python＋heroku】Python入れてない状態からherokuで何か表示するまで（前編） - Qiita](https://qiita.com/it_ks/items/afd1bdb792d41d0e1145#%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4)
 - [API Events | Slack](https://api.slack.com/events)
 - [Deploy to Heroku · Actions · GitHub Marketplace](https://github.com/marketplace/actions/deploy-to-heroku)
+- [お天気Webサービス仕様 - Weather Hacks - livedoor 天気情報](http://weather.livedoor.com/weather_hacks/webservice)
 
 ## おまけ
 
 ### ローカル開発環境からHerokuへデプロイする
+
+WIP...
