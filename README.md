@@ -345,9 +345,17 @@ Slackアプリのスコープを扱ったときに、イベントによるスコ
 
 ## ハンズオンのSlackbot概要
 
-WIP...
+今回のハンズオンのシステム全体の様子はこのような形になります。
+
+![スライドより:システムの全体図](./doc-img/slide-system-image.png)
+
 
 ## Slackbotの改造をしてみる
+
+shizuokatenki コマンドを改造してみます。
+
+Slackは文字のみのやり取り以外にも、Intaractive ***という、
+
 
 WIP...
 
