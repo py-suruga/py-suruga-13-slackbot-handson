@@ -89,7 +89,7 @@ GitHubのフォーク方法はヘルプを確認します。
 
 [リポジトリをフォークする - GitHub ヘルプ](https://help.github.com/ja/github/getting-started-with-github/fork-a-repo)
 
-コマンドでの操作はこちらです。
+フォーク後はローカル環境にcloneします。コマンドでの操作はこちらです。
 
 ```cmd
 git clone https://github.com/[各参加者のgithubアカウント名]/py-suruga-13-slackbot-handson.git
@@ -116,13 +116,13 @@ rem 仮想環境上に必要なパッケージをインストールします
 (.venv) > pip install -r requirements.txt
 ```
 
-また、Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
+Pipenvでの環境作成もできます。このハンズオンでは利用しませんが、普段利用されている方はPipfileも同梱しているのでご利用ください。
 
----
+仮想環境を終了する場合は以下のコマンドを実行します。
 
-Work in progress...
-
----
+```cmd
+(.venv)eactivate
+```
 
 ### Slackアプリ, Herokuアプリで利用する名前を生成する
 
@@ -151,7 +151,7 @@ Slack WorkSpaceはハンズオン用に新たに取得したワークスペー�
 
 「Bot Token Scope」はBotとなるSlackアプリがSlackワークスペースに利用できる権限の範囲（スコープ）です。
 
-この時点では、`chat:write`=botがSlackへメッセージを送るためのスコープのみを設定していますが、後ほどの設定で、いくつか追加されます。
+この時点では`chat:write`のみで、botがSlackへメッセージを送るためのスコープのみを設定していますが、後ほどの設定で、いくつか追加されます。
 
 ![slackapp3.jpg](./doc-img/slackapp3.jpg)
 
@@ -349,16 +349,6 @@ Slackアプリのスコープを扱ったときに、イベントによるスコ
 
 ![スライドより:システムの全体図](./doc-img/slide-system-image.png)
 
-
-## Slackbotの改造をしてみる
-
-shizuokatenki コマンドを改造してみます。
-
-Slackは文字のみのやり取り以外にも、Intaractive ***という、
-
-
-WIP...
-
 ## 参考資料
 
 - [slackapi/python-slack-events-api: Slack Events API adapter for Python](https://github.com/slackapi/python-slack-events-api)
@@ -373,4 +363,14 @@ WIP...
 
 ### ローカル開発環境からHerokuへデプロイする
 
-WIP...
+GitHub Actionsを使ってのデプロイではなく、ローカル環境からHerokuへデプロイする手段を紹介します。
+
+`heroku login`を行った後に、herokuへのデプロイ用のgitリポジトリの登録、pushを行います。
+
+```cmd
+rem クローンしたリポジトリ内で操作します
+rem herokuのアプリ名:今回はpysurugabot-[ランダム数字6桁]
+
+heroku git:remote -a [herokuのアプリ名]
+git push heroku master
+```
