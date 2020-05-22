@@ -60,7 +60,6 @@ def handle_message_greeting_jp(event_data):
             slack_client.chat_postMessage(channel=channel, text=res_message)
 
 
-# TODO:2020-05-21: インタラクティブ 
 @slack_events_adapter.on("message")
 def tenki(event_data):
     """
@@ -123,6 +122,8 @@ def tenki(event_data):
                 
                 slack_client.chat_postMessage(channel=channel, text=res_message)
 
+
+# TODO:2020-05-23:時間があればIntaractive Messageの実装を行う
 
 # エラー時のイベントのハンドリング
 @slack_events_adapter.on("error")
