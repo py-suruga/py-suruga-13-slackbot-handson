@@ -121,7 +121,7 @@ Pipenvでの環境作成もできます。このハンズオンでは利用し�
 仮想環境を終了する場合は以下のコマンドを実行します。
 
 ```cmd
-(.venv)eactivate
+(.venv)deactivate
 ```
 
 ### Slackアプリ, Herokuアプリで利用する名前を生成する
