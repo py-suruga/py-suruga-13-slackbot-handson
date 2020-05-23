@@ -169,7 +169,8 @@ def generate_shizutenki_button(city_code_maps: list) -> str:
         block_button_list.append(block_button)
     
     block["elements"] = block_button_list
-
+    import pprint.pprint
+    pprint(block)
     return block
 
 
