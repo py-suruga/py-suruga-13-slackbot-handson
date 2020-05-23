@@ -9,9 +9,9 @@ flake8 = "*"
 
 [packages]
 slackeventsapi = "*"
-slackclient = "*"
 gunicorn = "*"
 requests = "*"
+slackclient = "*"
 
 [requires]
 python_version = "3.7"
