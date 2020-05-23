@@ -131,21 +131,23 @@ def generate_shizutenki_button(city_code_maps: list) -> str:
     """
     Blockkitを使ってボタンあり構造を生成する
     """
-    question_block_base_json = """
-    	[
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "コンニチハ！:robot_face: 私はpysurugabotです！:mount_fuji::shrimp::fish: 静岡の今日の天気をお答えします。地域を選択してください。"
-                }
-            },
-            {
-                "type": "actions",
-                "elements": []
+    question_block_1st_base_json = """
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "コンニチハ！:robot_face: 私はpysurugabotです！:mount_fuji::shrimp::fish: 静岡の今日の天気をお答えします。地域を選択してください。"
             }
-        ]
+        }
     """
+
+    question_block_2nd_base_json = """
+        {
+            "type": "actions",
+            "elements": []
+        }
+    """
+
     question_block_button_base_json = """
         {
             "type": "button",
@@ -158,20 +160,24 @@ def generate_shizutenki_button(city_code_maps: list) -> str:
             "value": "shizutenki_123"
         }
     """
-
-    block = json.loads(question_block_base_json)
+    from pprint import pprint
+    blocks = list()
+    block_1st = json.loads(question_block_1st_base_json)
+    blocks.append(block_1st)
+    block_2nd = json.loads(question_block_2nd_base_json)
+    pprint(blocks)
 
     block_button_list = list()
     for city_code in city_code_maps.keys():
-
         block_button = json.loads(question_block_button_base_json)
         block_button["text"]["text"] = city_code
         block_button_list.append(block_button)
     
-    block["elements"] = block_button_list
-    import pprint.pprint
-    pprint(block)
-    return block
+    block_2nd["elements"].extend(block_button_list)
+    
+    blocks.append(block_2nd)
+    pprint(blocks)
+    return blocks
 
 
 @slack_events_adapter.on("message")
@@ -197,7 +203,7 @@ def tenki_button_question(event_data):
             # メッセージを返す
             channel = message["channel"]
             res_message = generate_shizutenki_button(LD_TENIKI_CITY_CODE_MAPS)
-            slack_client.chat_postMessage(channel=channel, text=res_message)
+            slack_client.chat_postMessage(channel=channel, blocks=res_message)
 
 
 @slack_events_adapter.on("message")
