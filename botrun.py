@@ -132,18 +132,19 @@ def generate_shizutenki_button(city_code_maps: list) -> str:
     Blockkitを使ってボタンあり構造を生成する
     """
     question_block_base_json = """
-    	{
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": "コンニチハ！:robot_face: 私はpysurugabotです！:mount_fuji::shrimp::fish:\n静岡の今日の天気をお答えします。地域を選択してください。"
+    	[
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "コンニチハ！:robot_face: 私はpysurugabotです！:mount_fuji::shrimp::fish:\n静岡の今日の天気をお答えします。地域を選択してください。"
+                }
+            },
+            {
+                "type": "actions",
+                "elements": []
             }
-        },
-        {
-            "type": "actions",
-            "elements": [
-            ]
-        }
+        ]
     """
     question_block_button_base_json = """
         {
@@ -169,7 +170,7 @@ def generate_shizutenki_button(city_code_maps: list) -> str:
     
     block["elements"] = block_button_list
 
-    return json.dumps(block)
+    return block
 
 
 @slack_events_adapter.on("message")
@@ -200,7 +201,6 @@ def tenki_button_question(event_data):
 
 @slack_events_adapter.on("message")
 def tenki_button_ansewer(event_data):
-    
         print("debug:handled function: {}".format(sys._getframe().f_code.co_name))
         print("debug:eventdata:{}".format(event_data))
         message = event_data["event"]
