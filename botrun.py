@@ -137,7 +137,7 @@ def generate_shizutenki_button(city_code_maps: list) -> str:
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "コンニチハ！:robot_face: 私はpysurugabotです！:mount_fuji::shrimp::fish:\n静岡の今日の天気をお答えします。地域を選択してください。"
+                    "text": "コンニチハ！:robot_face: 私はpysurugabotです！:mount_fuji::shrimp::fish: 静岡の今日の天気をお答えします。地域を選択してください。"
                 }
             },
             {
