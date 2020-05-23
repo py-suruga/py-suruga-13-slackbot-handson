@@ -1,0 +1,54 @@
+[
+	{
+		"type": "section",
+		"text": {
+			"type": "mrkdwn",
+			"text": "コンニチハ！:robot_face: 私はpysurugabotです！:mount_fuji::shrimp::fish:\n静岡の今日の天気をお答えします。地域を選択してください。"
+		}
+	},
+	{
+		"type": "actions",
+		"elements": [
+			{
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"emoji": true,
+					"text": "西部"
+				},
+				"style": "primary",
+				"value": "click_me_123"
+			},
+			{
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"emoji": true,
+					"text": "中部"
+				},
+				"style": "primary",
+				"value": "click_me_123"
+			},
+			{
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"emoji": true,
+					"text": "東部"
+				},
+				"style": "primary",
+				"value": "click_me_123"
+			},
+			{
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"emoji": true,
+					"text": "伊豆"
+				},
+				"style": "primary",
+				"value": "click_me_123"
+			}
+		]
+	}
+]
